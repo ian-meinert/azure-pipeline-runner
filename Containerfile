@@ -4,7 +4,7 @@ ENV TARGETARCH="linux-x64"
 
 RUN microdnf update -y && \
     microdnf upgrade -y && \
-    microdnf install -y git jq libicu tar
+    microdnf install -y git jq libicu tar wget
 
 WORKDIR /azp/
 
