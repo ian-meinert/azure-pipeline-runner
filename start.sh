@@ -67,8 +67,18 @@ fi
 
 print_header "2. Downloading and extracting Azure Pipelines agent..."
 
+echo '-----BEFORE --'
+pwd
+id
+echo '-----BEFORE ---'
+cd /azp
 wget --no-check-certificate "${AZP_AGENT_PACKAGE_LATEST_URL}"
 tar -m -no-overwrite-dir -xzvf *gz
+
+echo '-----AFTER --'
+pwd
+id
+echo '-----AFTER ---'
 
 source ./env.sh
 
