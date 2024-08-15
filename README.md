@@ -1,13 +1,22 @@
 # azure-pipeline-runner
 
 ## Build and Push Container Image
+
 `docker login` or `podman login`
+
 `docker build -t azurerunner:v1 .` or `podman build -t azurerunner:v1 .`
+
 `podman tag localhost/azurerunner:v1 YourImageRegistryURL.com:v1`
+
 `docker push YourImageRegistryURL.com:v1` or `podman push YourImageRegistryURL.com:v1`
 
+
+
 ## Option A - Run container locally
+
 `podman run -e AZP_URL="<Azure DevOps instance>" -e AZP_TOKEN="<Personal Access Token>" -e AZP_POOL="<Agent Pool Name>" -e AZP_AGENT_NAME="Docker Agent - Linux" --name "azp-agent-linux" localhost/azurerunner:v1`
+
+------
 
 ## Option B - Run on Kubernetes/OpenShift
 1. Apply the Secret resource YAML then manually modify it afterwards with your values:
