@@ -8,7 +8,7 @@ ENV AZURE_RUNNER_AGENT_URL=https://vstsagentpackage.azureedge.net/agent/2.217.2/
 
 RUN microdnf update -y && \
     microdnf upgrade -y && \
-    microdnf install -y git jq libicu tar wget vim
+    microdnf install -y git jq libicu tar wget openssl-devel
 
 WORKDIR /azp/
 
