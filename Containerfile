@@ -13,19 +13,19 @@ RUN microdnf update -y && \
 WORKDIR /azp/
 
 COPY ./start.sh ./
-## temp fix to bypass security context for openshift
-RUN chmod -Rf 777 /azp
+
+RUN wget --no-check-certificate $AZURE_RUNNER_AGENT_URL && \
+    tar -xzf *gz
 
 # Create agent user and set up home directory
-RUN useradd -m -d /home/agent agent
-RUN chown -R agent:root /azp /home/agent
+RUN useradd -m -d /home/agent agent && \
+## temp fix to bypass security context for openshift
+   chmod -Rf 777 /azp && \
+   chown -R agent:root /azp /home/agent
 
 USER agent
 # Another option is to run the agent as root.
 # ENV AGENT_ALLOW_RUNASROOT="true"
-
-RUN wget --no-check-certificate $AZURE_RUNNER_AGENT_URL && \
-    tar -xzf *gz
 
 
 ENTRYPOINT [ "./start.sh" ]
