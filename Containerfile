@@ -14,7 +14,7 @@ RUN chmod -Rf 777 /azp
 
 # Create agent user and set up home directory
 RUN useradd -m -d /home/agent agent
-RUN chown -R agent:agent /azp /home/agent
+RUN chown -R agent:root /azp /home/agent
 
 USER agent
 # Another option is to run the agent as root.
