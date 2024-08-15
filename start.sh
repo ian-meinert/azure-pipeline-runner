@@ -73,7 +73,7 @@ id
 echo '-----BEFORE ---'
 
 wget --no-check-certificate "${AZP_AGENT_PACKAGE_LATEST_URL}"
-tar -m -no-overwrite-dir -xzvf *gz
+tar -m --no-overwrite-dir -xzvf *gz
 
 echo '-----AFTER --'
 pwd
