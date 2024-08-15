@@ -1,5 +1,6 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4-1134
 
+ENV FQDN_OF_AZURE_HOST=someDomain.com
 
 ENV TARGETARCH="linux-x64"
 # Also can be "linux-arm", "linux-arm64".
@@ -10,6 +11,13 @@ RUN microdnf update -y && \
     microdnf upgrade -y && \
     microdnf install -y git jq libicu tar wget openssl-devel
 
+## Add cert to OS for trust
+RUN cd /tmp && \
+    openssl s_client -showcerts -connect $FQDN_OF_AZURE_HOST:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > $FQDN_OF_AZURE_HOST.crt && \
+    cp $FQDN_OF_AZURE_HOST.crt /etc/pki/ca-trust/source/anchors/ && \
+    update-ca-trust
+
+## Azure Runner setup
 WORKDIR /azp/
 
 COPY ./start.sh ./
