@@ -34,7 +34,7 @@ data:
   AZP_AGENT_NAME: YXp1cmUtcGlwZWxpbmVzLWFnZW50Cg== # "azure-pipelines-agent"
 ```
 
-2. Apply the Deployment Resource YAML
+2. Update `image` Value and Apply the Deployment Resource YAML
 
 ```
 apiVersion: apps/v1
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: azure-pipelines-agent
-          image: registry.access.redhat.com/ubi9/ubi-minimal:9.4-1134
+          image: <YourImageRegistryURL.com:v1>
           imagePullPolicy: Always
           env:
             - name: AZP_AGENT_NAME
