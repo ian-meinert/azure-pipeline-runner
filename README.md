@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: azure-pipelines-agent
-          image: <YourImageRegistryURL.com:v1>
+          image: <YourImageRegistryURL.com:v1> ############ UPDATE THIS VALUE ###################
           imagePullPolicy: Always
           env:
             - name: AZP_AGENT_NAME
