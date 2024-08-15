@@ -13,8 +13,8 @@ RUN microdnf update -y && \
 
 ## Add cert to OS for trust
 RUN cd /tmp && \
-    openssl s_client -showcerts -connect $FQDN_OF_AZURE_HOST:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > $FQDN_OF_AZURE_HOST.crt && \
-    cp $FQDN_OF_AZURE_HOST.crt /etc/pki/ca-trust/source/anchors/ && \
+    openssl s_client -showcerts -connect $FQDN_OF_AZURE_HOST:443 </dev/null 2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $FQDN_OF_AZURE_HOST.pem && \
+    cp $FQDN_OF_AZURE_HOST.pem /etc/pki/ca-trust/source/anchors/ && \
     update-ca-trust
 
 ## Azure Runner setup
