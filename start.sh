@@ -65,20 +65,8 @@ if [ -z "${AZP_AGENT_PACKAGE_LATEST_URL}" -o "${AZP_AGENT_PACKAGE_LATEST_URL}" =
   exit 1
 fi
 
-print_header "2. Downloading and extracting Azure Pipelines agent..."
+print_header "2. Downloading and extracting Azure Pipelines agent... - did this via COntainerfile due to permission limitations with tar during extract on openshift"
 
-echo '-----BEFORE --'
-pwd
-id
-echo '-----BEFORE ---'
-
-wget --no-check-certificate "${AZP_AGENT_PACKAGE_LATEST_URL}"
-tar -m --no-overwrite-dir -xzf *gz
-
-echo '-----AFTER --'
-pwd
-id
-echo '-----AFTER ---'
 
 source ./env.sh
 
