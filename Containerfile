@@ -9,7 +9,8 @@ RUN microdnf update -y && \
 WORKDIR /azp/
 
 COPY ./start.sh ./
-RUN chmod +x ./start.sh
+## temp fix to bypass security context for openshift
+RUN chmod -Rf 777 /azp
 
 # Create agent user and set up home directory
 RUN useradd -m -d /home/agent agent
