@@ -34,7 +34,7 @@ data:
   AZP_AGENT_NAME: YXp1cmUtcGlwZWxpbmVzLWFnZW50Cg== # "azure-pipelines-agent"
 ```
 
-2. Update `image` Value and Apply the Deployment Resource YAML
+2. Update `image` and `imagePullSecrets` Value and Apply the Deployment Resource YAML
 
 ```
 apiVersion: apps/v1
