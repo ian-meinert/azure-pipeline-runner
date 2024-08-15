@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4-1134
 ENV TARGETARCH="linux-x64"
 # Also can be "linux-arm", "linux-arm64".
 
-ENV AZURE_RUNNER_AGENT_URL=https://vstsagentpackage.azureedge.net/agent/2.217.2/vsts-agent-linux-x64-2.217.2.tar.gz
+ENV AZURE_RUNNER_AGENT_URL=https://vstsagentpackage.azureedge.net/agent/3.220.0/vsts-agent-linux-x64-3.220.0.tar.gz
 
 RUN microdnf update -y && \
     microdnf upgrade -y && \
