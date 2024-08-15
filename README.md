@@ -56,6 +56,8 @@ spec:
         app.kubernetes.io/name: azure-pipelines-agent
         app.kubernetes.io/instance: agent
     spec:
+      imagePullSecrets:
+        - name: YourImagePullTokenSecretIfPrivate ######### UPDATE THIS VALUE IF PRIVATE IMAGE REGISTRY, OTHERWISE DELETE ####
       containers:
         - name: azure-pipelines-agent
           image: <YourImageRegistryURL.com:v1> ############ UPDATE THIS VALUE ###################
