@@ -2,9 +2,9 @@
 
 ## Build and Push Container Image
 
-`docker login` or `podman login`
+`docker login` or `podman login` : If you're changing the `FROM` block
 
-`docker build -t azurerunner:v1 .` or `podman build -t azurerunner:v1 .`
+`docker build -t azurerunner:v1 .` or `podman build -t azurerunner:v1 .` : Update `ENV FQDN_OF_AZURE_HOST=` if you need to import a cert to the OS
 
 `podman tag localhost/azurerunner:v1 YourImageRegistryURL.com:v1`
 
