@@ -29,9 +29,9 @@ metadata:
 type: Opaque
 data:
   AZP_TOKEN: cGFzc3dvcmQxMjM=  # This is "password123" base64 encoded
-  AZP_URL: cGFzc3dvcmQxMjM= # https://domain.com/org/
+  AZP_URL: cGFzc3dvcmQxMjM= # https://yourAzureDomain.com/tfs/SomeOrgName
   AZP_POOL: cGFzc3dvcmQxMjM= # Pool name
-  AZP_AGENT_NAME: YXp1cmUtcGlwZWxpbmVzLWFnZW50Cg== # "azure-pipelines-agent"
+  AZP_AGENT_NAME: YXp1cmUtcGlwZWxpbmVzLWFnZW50 # "azure-pipelines-agent"
 ```
 
 2. Update `image` and `imagePullSecrets` Value and Apply the Deployment Resource YAML
