@@ -1,21 +1,24 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 
+####
 ENV FQDN_OF_AZURE_HOST=azure.microsoft.com
 
-ENV TARGETARCH="linux-x64"
-# Also can be "linux-arm", "linux-arm64".
 
-ENV AZURE_RUNNER_AGENT_URL=https://vstsagentpackage.azureedge.net/agent/3.220.0/vsts-agent-linux-x64-3.220.0.tar.gz
+ENV TARGETARCH="linux-x64"
+ENV AGENT_VERSION="3.220.0"
+ENV AZURE_RUNNER_AGENT_URL=https://vstsagentpackage.azureedge.net/agent/$AGENT_VERSION/vsts-agent-$TARGETARCH-$AGENT_VERSION.tar.gz
+####
 
 RUN microdnf update -y && \
     microdnf upgrade -y && \
     microdnf install -y git jq libicu tar wget openssl-devel
+
 ## Add cert to OS for trust
 RUN cd /tmp && \
     openssl s_client -showcerts -connect $FQDN_OF_AZURE_HOST:443 </dev/null 2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $FQDN_OF_AZURE_HOST.pem && \
     cp $FQDN_OF_AZURE_HOST.pem /etc/pki/ca-trust/source/anchors/ && \
-    update-ca-trust && \
-    update-ca-trust force-enable
+    update-ca-trust force-enable && \
+    update-ca-trust
 
 ## Azure Runner setup
 WORKDIR /azp/
